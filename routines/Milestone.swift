@@ -2,7 +2,13 @@ import SwiftUI
 import CoreLocation
 
 struct Milestone: Hashable, Codable, Identifiable {
-    var id: Int
+    var id = UUID()
     var name: String
-    var progress: Float
+    var topics: Set<Topic>
+    
+    func getScore() -> Float {
+        return Float(topics.count / 100);
+    }
 }
+
+

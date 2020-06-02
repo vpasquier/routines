@@ -1,23 +1,18 @@
-//
-//  ContentView.swift
-//  routines
-//
-//  Created by V on 5/29/20.
-//  Copyright © 2020 V. All rights reserved.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var milestones = [Milestone(id: 0, name: "Interviews", progress: 0.5),  Milestone(id: 0, name: "Arts", progress: 0.8)]
+    var milestones = [Milestone(name: "Interviews", topics: Set<Topic>()),  Milestone(name: "Arts", topics: Set<Topic>())]
     var body: some View {
         NavigationView {
             VStack {
                 List(milestones) { milestone in
                     MilestoneRow(milestone: milestone)
                 }
-                NavigationLink(destination: ResultView()) {
+                NavigationLink(destination: FormView(name: "", topics: Array(Set<Topic>()))) {
                     Text("+")
+                }.listSeparatorStyleNone()
+                NavigationLink(destination: TodayView()) {
+                    Text("Today Tasks")
                 }.listSeparatorStyleNone()
             }
             .navigationBarTitle(Text("This Week"))
@@ -47,7 +42,57 @@ extension View {
     }
 }
 
-struct ResultView: View {
+struct FormView: View {
+    
+    @State public var name: String = ""
+    @State public var topics: Array<Topic> = []
+    
+    var body: some View {
+        
+        NavigationView {
+            Form {
+                Section(header: Text("Category:")) {
+                    TextField("Routine category", text: $name)
+                }
+                Section(header: Text("Routines:")) {
+                    List(topics, id: \.topics) { index, topic in
+                        HStack {
+                            Group {
+                                TextField("", text: self.$topic.item[index].name)
+                                TextField("", text: self.$topic.item[index].count).keyboardType(.numberPad)
+                            }
+                        }
+                    }
+                    Button(action: {
+                        //bla
+                    }) {
+                        Text("-")
+                    }
+                    Button(action: {
+                        //bla
+                    }) {
+                        Text("+")
+                    }
+                }
+                Section {
+                    Button(action: {
+                        print("cancel")
+                    }) {
+                        Text("Cancel")
+                    }
+                    Button(action: {
+                        print("Save")
+                    }) {
+                        Text("Save")
+                    }
+                }
+            }
+            .navigationBarTitle(Text("New habits"))
+        }
+    }
+}
+
+struct TodayView: View {
     var body: some View {
         Text("Hello Form")
     }
