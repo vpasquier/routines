@@ -1,14 +1,17 @@
 import SwiftUI
+import CoreData
+
+var routines: [NSManagedObject] = []
 
 struct ContentView: View {
-    var milestones = [Milestone(name: "Interviews", topics: Set<Topic>()),  Milestone(name: "Arts", topics: Set<Topic>())]
+    var routines = [Routine(name: "Interviews", count: "3", done: "0"),  Routine(name: "Arts", count: "2", done: "1")]
     var body: some View {
         NavigationView {
             VStack {
-                List(milestones) { milestone in
-                    MilestoneRow(milestone: milestone)
+                List(routines) { routine in
+                    RoutineRow(routine: routine)
                 }
-                NavigationLink(destination: FormView(name: "", topics: Array(Set<Topic>()))) {
+                NavigationLink(destination: FormView(name: "", count: "0")) {
                     Text("+")
                 }.listSeparatorStyleNone()
                 NavigationLink(destination: TodayView()) {
@@ -45,49 +48,40 @@ extension View {
 struct FormView: View {
     
     @State public var name: String = ""
-    @State public var topics: Array<Topic> = []
+    @State public var count: String = "0"
     
     var body: some View {
-        
         NavigationView {
             Form {
-                Section(header: Text("Category:")) {
-                    TextField("Routine category", text: $name)
-                }
-                Section(header: Text("Routines:")) {
-                    List(topics, id: \.topics) { index, topic in
-                        HStack {
-                            Group {
-                                TextField("", text: self.$topic.item[index].name)
-                                TextField("", text: self.$topic.item[index].count).keyboardType(.numberPad)
-                            }
-                        }
-                    }
-                    Button(action: {
-                        //bla
-                    }) {
-                        Text("-")
-                    }
-                    Button(action: {
-                        //bla
-                    }) {
-                        Text("+")
-                    }
+                Section(header: Text("Routine")) {
+                    TextField("Name:", text: $name)
+                    TextField("Count:", text: $count).keyboardType(.numberPad)
                 }
                 Section {
                     Button(action: {
-                        print("cancel")
-                    }) {
-                        Text("Cancel")
-                    }
-                    Button(action: {
-                        print("Save")
+                        self.save(name: self.name, count: self.count);
                     }) {
                         Text("Save")
                     }
                 }
             }
             .navigationBarTitle(Text("New habits"))
+        }
+    }
+    func save(name: String, count: String) {
+        let routine = Routine(name: name, count: count, done: "0");
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Routine", in: managedContext)!
+        let routineEntity = NSManagedObject(entity: entity, insertInto: managedContext)
+        routineEntity.setValue(routine, forKeyPath: "routine")
+        do {
+            try managedContext.save()
+            routines.append(routineEntity)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
 }
