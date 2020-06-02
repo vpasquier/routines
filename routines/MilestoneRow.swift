@@ -4,7 +4,7 @@ struct MilestoneRow: View {
     var milestone: Milestone
     
     var body: some View {
-        ProgressBar(name: milestone.name, progress: milestone.progress).frame(height: 70)
+        ProgressBar(name: milestone.name, progress: milestone.getScore()).frame(height: 70)
     }
 }
 
