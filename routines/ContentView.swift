@@ -4,11 +4,17 @@ import CoreData
 var routines: [NSManagedObject] = []
 
 struct ContentView: View {
-    var routines = [Routine(name: "Interviews", count: "3", done: "0"),  Routine(name: "Arts", count: "2", done: "1")]
+//    var routines = [Routine(name: "Interviews", count: "3", done: "0"),  Routine(name: "Arts", count: "2", done: "1")]
+    func fetchRoutines() throws -> [Routine] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Routine")
+        return try context.fetch(request)
+    }
     var body: some View {
         NavigationView {
             VStack {
-                List(routines) { routine in
+                List(self.fetchRoutines()) { routine in
                     RoutineRow(routine: routine)
                 }
                 NavigationLink(destination: FormView(name: "", count: "0")) {
@@ -74,14 +80,15 @@ struct FormView: View {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Routine", in: managedContext)!
-        let routineEntity = NSManagedObject(entity: entity, insertInto: managedContext)
-        routineEntity.setValue(routine, forKeyPath: "routine")
-        do {
-            try managedContext.save()
-            routines.append(routineEntity)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+        if let entity = NSEntityDescription.entity(forEntityName: "Routine", in: managedContext) {
+            let routineEntity = NSManagedObject(entity: entity, insertInto: managedContext)
+            routineEntity.setValue(routine, forKeyPath: "routine")
+            do {
+                try managedContext.save()
+                routines.append(routineEntity)
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
         }
     }
 }
