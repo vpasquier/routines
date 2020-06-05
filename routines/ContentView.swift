@@ -4,17 +4,23 @@ import CoreData
 var routines: [NSManagedObject] = []
 
 struct ContentView: View {
-//    var routines = [Routine(name: "Interviews", count: "3", done: "0"),  Routine(name: "Arts", count: "2", done: "1")]
-    func fetchRoutines() throws -> [Routine] {
+    //    var routines = [Routine(name: "Interviews", count: "3", done: "0"),  Routine(name: "Arts", count: "2", done: "1")]
+    func fetchRoutines() -> [Routine]? {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Routine")
-        return try context.fetch(request)
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<Routine>(entityName: "Routine")
+        var routines: [Routine]? = []
+        do {
+            routines = try managedContext.fetch(fetchRequest)
+        } catch{
+            print(error)
+        }
+        return routines;
     }
     var body: some View {
         NavigationView {
             VStack {
-                List(self.fetchRoutines()) { routine in
+                List(fetchRoutines() ?? [], id: \.id) { routine in
                     RoutineRow(routine: routine)
                 }
                 NavigationLink(destination: FormView(name: "", count: "0")) {
@@ -75,20 +81,18 @@ struct FormView: View {
         }
     }
     func save(name: String, count: String) {
-        let routine = Routine(name: name, count: count, done: "0");
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        if let entity = NSEntityDescription.entity(forEntityName: "Routine", in: managedContext) {
-            let routineEntity = NSManagedObject(entity: entity, insertInto: managedContext)
-            routineEntity.setValue(routine, forKeyPath: "routine")
-            do {
-                try managedContext.save()
-                routines.append(routineEntity)
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
-            }
+        let entity = NSEntityDescription.entity(forEntityName: "Routine", in: managedContext)!
+        let routineEntity = NSManagedObject(entity: entity, insertInto: managedContext)
+        routineEntity.setValue(name, forKeyPath: "name")
+        routineEntity.setValue(Int(count), forKeyPath: "count")
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
 }

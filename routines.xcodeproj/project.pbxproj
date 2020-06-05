@@ -7,16 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E77EB4C22489E1D600F02671 /* Routines.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E77EB4C02489E1D600F02671 /* Routines.xcdatamodeld */; };
 		E78675942481DE90000F22B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78675932481DE90000F22B8 /* AppDelegate.swift */; };
 		E78675962481DE90000F22B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78675952481DE90000F22B8 /* SceneDelegate.swift */; };
-		E78675992481DE90000F22B8 /* routines.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E78675972481DE90000F22B8 /* routines.xcdatamodeld */; };
 		E786759B2481DE90000F22B8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786759A2481DE90000F22B8 /* ContentView.swift */; };
 		E786759D2481DE91000F22B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E786759C2481DE91000F22B8 /* Assets.xcassets */; };
 		E78675A02481DE91000F22B8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E786759F2481DE91000F22B8 /* Preview Assets.xcassets */; };
 		E78675A32481DE91000F22B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E78675A12481DE91000F22B8 /* LaunchScreen.storyboard */; };
 		E78675AE2481DE91000F22B8 /* routinesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78675AD2481DE91000F22B8 /* routinesTests.swift */; };
 		E78675B92481DE91000F22B8 /* routinesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78675B82481DE91000F22B8 /* routinesUITests.swift */; };
-		E78675C72481E440000F22B8 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78675C62481E440000F22B8 /* Routine.swift */; };
 		E78675C92481E4F0000F22B8 /* RoutineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78675C82481E4F0000F22B8 /* RoutineRow.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,10 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E77EB4C12489E1D600F02671 /* Routines.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Routines.xcdatamodel; sourceTree = "<group>"; };
 		E78675902481DE90000F22B8 /* routines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = routines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E78675932481DE90000F22B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E78675952481DE90000F22B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E78675982481DE90000F22B8 /* routines.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = routines.xcdatamodel; sourceTree = "<group>"; };
 		E786759A2481DE90000F22B8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E786759C2481DE91000F22B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E786759F2481DE91000F22B8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -53,7 +52,6 @@
 		E78675B42481DE91000F22B8 /* routinesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = routinesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E78675B82481DE91000F22B8 /* routinesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = routinesUITests.swift; sourceTree = "<group>"; };
 		E78675BA2481DE91000F22B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E78675C62481E440000F22B8 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		E78675C82481E4F0000F22B8 /* RoutineRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,15 +103,14 @@
 		E78675922481DE90000F22B8 /* routines */ = {
 			isa = PBXGroup;
 			children = (
+				E77EB4C02489E1D600F02671 /* Routines.xcdatamodeld */,
 				E78675932481DE90000F22B8 /* AppDelegate.swift */,
 				E78675952481DE90000F22B8 /* SceneDelegate.swift */,
 				E786759A2481DE90000F22B8 /* ContentView.swift */,
 				E786759C2481DE91000F22B8 /* Assets.xcassets */,
 				E78675A12481DE91000F22B8 /* LaunchScreen.storyboard */,
 				E78675A42481DE91000F22B8 /* Info.plist */,
-				E78675972481DE90000F22B8 /* routines.xcdatamodeld */,
 				E786759E2481DE91000F22B8 /* Preview Content */,
-				E78675C62481E440000F22B8 /* Routine.swift */,
 				E78675C82481E4F0000F22B8 /* RoutineRow.swift */,
 			);
 			path = routines;
@@ -277,10 +274,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E78675942481DE90000F22B8 /* AppDelegate.swift in Sources */,
-				E78675992481DE90000F22B8 /* routines.xcdatamodeld in Sources */,
 				E786759B2481DE90000F22B8 /* ContentView.swift in Sources */,
 				E78675C92481E4F0000F22B8 /* RoutineRow.swift in Sources */,
-				E78675C72481E440000F22B8 /* Routine.swift in Sources */,
+				E77EB4C22489E1D600F02671 /* Routines.xcdatamodeld in Sources */,
 				E78675962481DE90000F22B8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -608,13 +604,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E78675972481DE90000F22B8 /* routines.xcdatamodeld */ = {
+		E77EB4C02489E1D600F02671 /* Routines.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				E78675982481DE90000F22B8 /* routines.xcdatamodel */,
+				E77EB4C12489E1D600F02671 /* Routines.xcdatamodel */,
 			);
-			currentVersion = E78675982481DE90000F22B8 /* routines.xcdatamodel */;
-			path = routines.xcdatamodeld;
+			currentVersion = E77EB4C12489E1D600F02671 /* Routines.xcdatamodel */;
+			name = Routines.xcdatamodeld;
+			path = ../Routines.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

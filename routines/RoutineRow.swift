@@ -4,7 +4,7 @@ struct RoutineRow: View {
     var routine: Routine
     
     var body: some View {
-        ProgressBar(name: routine.name, count: routine.count, done: routine.done).frame(height: 70)
+        ProgressBar(name: routine.name!, count: String(routine.count), done: String(routine.done)).frame(height: 70)
     }
 }
 
