@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E77EB4C22489E1D600F02671 /* Routines.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E77EB4C02489E1D600F02671 /* Routines.xcdatamodeld */; };
+		E7058B90248DAE3600116721 /* routines.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E7058B8E248DAE3600116721 /* routines.xcdatamodeld */; };
 		E78675942481DE90000F22B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78675932481DE90000F22B8 /* AppDelegate.swift */; };
 		E78675962481DE90000F22B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78675952481DE90000F22B8 /* SceneDelegate.swift */; };
 		E786759B2481DE90000F22B8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786759A2481DE90000F22B8 /* ContentView.swift */; };
@@ -37,7 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E77EB4C12489E1D600F02671 /* Routines.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Routines.xcdatamodel; sourceTree = "<group>"; };
+		E7058B8F248DAE3600116721 /* routines.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = routines.xcdatamodel; sourceTree = "<group>"; };
 		E78675902481DE90000F22B8 /* routines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = routines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E78675932481DE90000F22B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E78675952481DE90000F22B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,7 +103,6 @@
 		E78675922481DE90000F22B8 /* routines */ = {
 			isa = PBXGroup;
 			children = (
-				E77EB4C02489E1D600F02671 /* Routines.xcdatamodeld */,
 				E78675932481DE90000F22B8 /* AppDelegate.swift */,
 				E78675952481DE90000F22B8 /* SceneDelegate.swift */,
 				E786759A2481DE90000F22B8 /* ContentView.swift */,
@@ -112,6 +111,7 @@
 				E78675A42481DE91000F22B8 /* Info.plist */,
 				E786759E2481DE91000F22B8 /* Preview Content */,
 				E78675C82481E4F0000F22B8 /* RoutineRow.swift */,
+				E7058B8E248DAE3600116721 /* routines.xcdatamodeld */,
 			);
 			path = routines;
 			sourceTree = "<group>";
@@ -275,8 +275,8 @@
 			files = (
 				E78675942481DE90000F22B8 /* AppDelegate.swift in Sources */,
 				E786759B2481DE90000F22B8 /* ContentView.swift in Sources */,
+				E7058B90248DAE3600116721 /* routines.xcdatamodeld in Sources */,
 				E78675C92481E4F0000F22B8 /* RoutineRow.swift in Sources */,
-				E77EB4C22489E1D600F02671 /* Routines.xcdatamodeld in Sources */,
 				E78675962481DE90000F22B8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,14 +604,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E77EB4C02489E1D600F02671 /* Routines.xcdatamodeld */ = {
+		E7058B8E248DAE3600116721 /* routines.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				E77EB4C12489E1D600F02671 /* Routines.xcdatamodel */,
+				E7058B8F248DAE3600116721 /* routines.xcdatamodel */,
 			);
-			currentVersion = E77EB4C12489E1D600F02671 /* Routines.xcdatamodel */;
-			name = Routines.xcdatamodeld;
-			path = ../Routines.xcdatamodeld;
+			currentVersion = E7058B8F248DAE3600116721 /* routines.xcdatamodel */;
+			path = routines.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
