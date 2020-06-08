@@ -89,6 +89,7 @@ struct FormView: View {
         let routineEntity = NSManagedObject(entity: entity, insertInto: managedContext)
         routineEntity.setValue(name, forKeyPath: "name")
         routineEntity.setValue(Int(count), forKeyPath: "count")
+        routineEntity.setValue(UUID(), forKeyPath: "id")
         do {
             try managedContext.save()
         } catch let error as NSError {
