@@ -6,7 +6,9 @@ var routines: [NSManagedObject] = []
 
 var colors: [UIColor] = [UIColor.systemBlue, UIColor.systemOrange, UIColor.systemRed]
 
-var reloader = Reloader()
+struct Global {
+    static var reloader = Reloader()
+}
 
 struct ContentView: View {
     
@@ -28,16 +30,16 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 List(routines ?? [], id: \.id) { routine in
-                    RoutineRow(routine: routine, reload: reloader);
+                    RoutineRow(routine: routine);
                 }
-                NavigationLink(destination: FormView(name: "", count: "0")) {
+                NavigationLink(destination: FormView(name: "", count: "")) {
                     Text("+").font(.system(.title, design: .rounded)).padding()
                 }.listSeparatorStyleNone()
             }
             .navigationBarTitle(Text("This Week"))
         }.onAppear(perform: {
             self.routines = self.fetchRoutines()
-        }).onReceive(reloader.reload) { (reload) in
+        }).onReceive(Global.reloader.reload) { (reload) in
             self.routines = self.fetchRoutines()
         }
     }
@@ -68,27 +70,40 @@ extension View {
 struct FormView: View {
     
     @State public var name: String = ""
-    @State public var count: String = "0"
+    @State public var count: String = ""
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @State private var showingAlert = false
     
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Routine")) {
-                    TextField("Name:", text: $name)
-                    TextField("Count:", text: $count).keyboardType(.numberPad)
+                Section {
+                    TextField("Name", text: $name)
+                    TextField("Number per week", text: $count).keyboardType(.numberPad)
                 }
                 Section {
                     Button(action: {
-                        self.save(name: self.name, count: self.count);
-                        self.presentationMode.wrappedValue.dismiss();
-                        reloader.reloadme()
+                        if(self.name.isEmpty || self.count.isEmpty || Int(self.count) ?? 0 <= 0){
+                            self.showingAlert = true
+                        }else{
+                            self.save(name: self.name, count: self.count);
+                            self.presentationMode.wrappedValue.dismiss();
+                            Global.reloader.reloadme()
+                        }
                     }) {
                         Text("Save")
                     }
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss();
+                    }) {
+                        Text("Cancel")
+                    }
                 }
             }
-            .navigationBarTitle(Text("New habits"))
+            .navigationBarTitle(Text("New routine"))
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("Form Errors"), message: Text("Name and number should not be empty"), dismissButton: .default(Text("Got it!")))
+            }
         }
     }
     func save(name: String, count: String) {
@@ -116,9 +131,9 @@ struct TodayView: View {
 }
 
 struct Reloader {
-      var reload = PassthroughSubject<String,Never>()
-
-      func reloadme() {
+    var reload = PassthroughSubject<String,Never>()
+    
+    func reloadme() {
         reload.send("reload")
-      }
+    }
 }

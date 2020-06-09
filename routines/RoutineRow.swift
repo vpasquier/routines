@@ -5,7 +5,6 @@ struct RoutineRow: View {
     
     var routine: Routine
     var colors: [UIColor] = [UIColor.systemBlue, UIColor.systemOrange, UIColor.systemRed, UIColor.systemPink, UIColor.systemGreen, UIColor.systemPurple, UIColor.systemYellow]
-    var reload: Reloader
     
     var body: some View {
         ProgressBar(name: self.routine.name!, count: self.routine.count, done: self.routine.done, save: self.save, delete: self.delete, color: colors.randomElement() ?? UIColor.systemBlue).frame(height: 70)
@@ -19,7 +18,6 @@ struct RoutineRow: View {
             let managedContext = appDelegate.persistentContainer.viewContext
             self.routine.setValue(done, forKey: "done")
             try managedContext.save()
-            self.reload.reloadme()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
@@ -33,6 +31,7 @@ struct RoutineRow: View {
             let managedContext = appDelegate.persistentContainer.viewContext
             managedContext.delete(self.routine)
             try managedContext.save()
+            Global.reloader.reloadme()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
