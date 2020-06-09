@@ -19,7 +19,6 @@
 		E78675C92481E4F0000F22B8 /* RoutineRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78675C82481E4F0000F22B8 /* RoutineRow.swift */; };
 		E7F5F4EF248F002100E39639 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F5F4EE248F002100E39639 /* NotificationCenter.framework */; };
 		E7F5F4F2248F002100E39639 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F5F4F1248F002100E39639 /* TodayViewController.swift */; };
-		E7F5F4F5248F002100E39639 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7F5F4F3248F002100E39639 /* MainInterface.storyboard */; };
 		E7F5F4FA248F002100E39639 /* Routines Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E7F5F4EC248F002100E39639 /* Routines Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -81,7 +80,6 @@
 		E7F5F4EC248F002100E39639 /* Routines Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Routines Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F5F4EE248F002100E39639 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		E7F5F4F1248F002100E39639 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		E7F5F4F4248F002100E39639 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		E7F5F4F6248F002100E39639 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				E7F5F4F1248F002100E39639 /* TodayViewController.swift */,
-				E7F5F4F3248F002100E39639 /* MainInterface.storyboard */,
 				E7F5F4F6248F002100E39639 /* Info.plist */,
 			);
 			path = "Routines Widget";
@@ -352,7 +349,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7F5F4F5248F002100E39639 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,14 +418,6 @@
 				E78675A22481DE91000F22B8 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		E7F5F4F3248F002100E39639 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E7F5F4F4248F002100E39639 /* Base */,
-			);
-			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -678,6 +666,7 @@
 		E7F5F4FB248F002100E39639 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2MDFY8PK3W;
 				INFOPLIST_FILE = "Routines Widget/Info.plist";
@@ -697,6 +686,7 @@
 		E7F5F4FC248F002100E39639 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2MDFY8PK3W;
 				INFOPLIST_FILE = "Routines Widget/Info.plist";
