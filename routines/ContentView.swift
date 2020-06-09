@@ -12,6 +12,8 @@ struct Global {
 
 struct ContentView: View {
     
+    @State private var totalCount: String = "";
+    
     @State private var routines: [Routine]? = [];
     
     func fetchRoutines() -> [Routine]? {
@@ -24,6 +26,13 @@ struct ContentView: View {
         } catch{
             print(error)
         }
+        var totalCount : Int64 = 0;
+        var totalDone : Int64 = 0;
+        for routine in routines ?? [] {
+            totalCount += routine.count;
+            totalDone += routine.done;
+        }
+        self.totalCount = "\(totalDone) / \(totalCount)"
         return routines;
     }
     var body: some View {
@@ -36,7 +45,7 @@ struct ContentView: View {
                     Text("+").font(.system(.title, design: .rounded)).padding()
                 }.listSeparatorStyleNone()
             }
-            .navigationBarTitle(Text("This Week"))
+            .navigationBarTitle(Text("This Week - \(self.totalCount)"))
         }.onAppear(perform: {
             self.routines = self.fetchRoutines()
         }).onReceive(Global.reloader.reload) { (reload) in

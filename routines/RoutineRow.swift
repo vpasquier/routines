@@ -63,7 +63,7 @@ struct ProgressBar: View {
                         }
                         self.done -= 1
                         self.save(self.done)
-                        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+                        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .heavy)
                         impactFeedbackgenerator.prepare()
                         impactFeedbackgenerator.impactOccurred()
                     }
@@ -86,7 +86,7 @@ struct ProgressBar: View {
                         }
                         self.done += 1
                         self.save(self.done)
-                        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+                        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .heavy)
                         impactFeedbackgenerator.prepare()
                         impactFeedbackgenerator.impactOccurred()
                     }
