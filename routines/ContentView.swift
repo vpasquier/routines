@@ -1,10 +1,15 @@
 import SwiftUI
 import CoreData
+import Combine
 
 var routines: [NSManagedObject] = []
 
+var reloader = Reloader()
+
 struct ContentView: View {
-    //    var routines = [Routine(name: "Interviews", count: "3", done: "0"),  Routine(name: "Arts", count: "2", done: "1")]
+    
+    @State private var routines: [Routine]? = [];
+    
     func fetchRoutines() -> [Routine]? {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -20,17 +25,18 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(fetchRoutines() ?? [], id: \.id) { routine in
+                List(routines ?? [], id: \.id) { routine in
                     RoutineRow(routine: routine)
                 }
                 NavigationLink(destination: FormView(name: "", count: "0")) {
-                    Text("+")
-                }.listSeparatorStyleNone()
-                NavigationLink(destination: TodayView()) {
-                    Text("Today Tasks")
+                    Text("+").font(.system(.title, design: .rounded)).padding()
                 }.listSeparatorStyleNone()
             }
             .navigationBarTitle(Text("This Week"))
+        }.onAppear(perform: {
+            self.routines = self.fetchRoutines()
+        }).onReceive(reloader.reload) { (reload) in
+            self.routines = self.fetchRoutines()
         }
     }
 }
@@ -61,6 +67,7 @@ struct FormView: View {
     
     @State public var name: String = ""
     @State public var count: String = "0"
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         NavigationView {
@@ -72,6 +79,8 @@ struct FormView: View {
                 Section {
                     Button(action: {
                         self.save(name: self.name, count: self.count);
+                        self.presentationMode.wrappedValue.dismiss();
+                        reloader.reloadme()
                     }) {
                         Text("Save")
                     }
@@ -102,4 +111,12 @@ struct TodayView: View {
     var body: some View {
         Text("Hello Form")
     }
+}
+
+struct Reloader {
+      var reload = PassthroughSubject<String,Never>()
+
+      func reloadme() {
+        reload.send("reload")
+      }
 }
