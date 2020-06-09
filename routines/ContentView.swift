@@ -4,6 +4,8 @@ import Combine
 
 var routines: [NSManagedObject] = []
 
+var colors: [UIColor] = [UIColor.systemBlue, UIColor.systemOrange, UIColor.systemRed]
+
 var reloader = Reloader()
 
 struct ContentView: View {
@@ -26,7 +28,7 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 List(routines ?? [], id: \.id) { routine in
-                    RoutineRow(routine: routine)
+                    RoutineRow(routine: routine, reload: reloader);
                 }
                 NavigationLink(destination: FormView(name: "", count: "0")) {
                     Text("+").font(.system(.title, design: .rounded)).padding()
