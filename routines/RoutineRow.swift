@@ -63,6 +63,9 @@ struct ProgressBar: View {
                         }
                         self.done -= 1
                         self.save(self.done)
+                        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+                        impactFeedbackgenerator.prepare()
+                        impactFeedbackgenerator.impactOccurred()
                     }
                     Spacer()
                     VStack {
@@ -83,6 +86,9 @@ struct ProgressBar: View {
                         }
                         self.done += 1
                         self.save(self.done)
+                        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+                        impactFeedbackgenerator.prepare()
+                        impactFeedbackgenerator.impactOccurred()
                     }
                     Spacer()
                 }
